@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecuvaX - Recovery Dashboard</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <a href="index.html" class="logo"><span>✦</span> RecuvaX</a>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="side-nav">
+            <a href="#overview" class="side-link active">▦ Overview</a>
+            <a href="#scanner" class="side-link">⌕ File Scanner</a>
+            <a href="#files" class="side-link">▤ My Files</a>
+            <a href="#drives" class="side-link">▣ Drives</a>
+            <a href="#history" class="side-link">◷ Recovery History</a>
+        </nav>
+
+        <div class="sidebar-label">PREFERENCES</div>
+        <a href="#settings" class="side-link">⚙ Settings</a>
+
+        <div class="sidebar-bottom">
+            <div class="demo-info">
+                <strong>Demo Mode</strong>
+                <p>This dashboard uses sample data only.</p>
+            </div>
+            <a href="index.html" class="back-link">← Back to Website</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="mobile-menu" id="mobileMenu">☰</button>
+                <div>
+                    <h2>Recovery Dashboard</h2>
+                    <p>Manage your file recovery demo</p>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <span class="demo-badge">● DEMO MODE</span>
+                <div class="avatar">RX</div>
+            </div>
+        </header>
+
+        <div class="demo-warning">
+            <strong>Demo environment:</strong>
+            Scanning and recovery are simulated. No real drive data is accessed.
+        </div>
+
+        <!-- Overview -->
+        <section class="dashboard-section" id="overview">
+            <div class="welcome-row">
+                <div>
+                    <h1>Welcome to RecuvaX 👋</h1>
+                    <p>Here is an overview of your sample recovery workspace.</p>
+                </div>
+                <a href="#scanner" class="primary-btn">+ New Scan</a>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top"><span>Files Found</span><span>📁</span></div>
+                    <h2 id="totalFiles">0</h2>
+                    <small>Sample files in this demo</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top"><span>Recoverable</span><span>♻️</span></div>
+                    <h2 id="recoverableFiles">0</h2>
+                    <small>Demo recoverable records</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top"><span>Selected Files</span><span>☑</span></div>
+                    <h2 id="selectedFiles">0</h2>
+                    <small>Files selected for demo</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top"><span>Available Drives</span><span>💽</span></div>
+                    <h2>4</h2>
+                    <small>Sample drive options</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Drives -->
+        <section class="dashboard-section" id="drives">
+            <div class="section-title">
+                <div>
+                    <h2>Select a Drive</h2>
+                    <p>Choose a sample drive to explore.</p>
+                </div>
+            </div>
+
+            <div class="drive-grid">
+                <button class="drive-card selected" data-drive="C:">
+                    <span class="drive-icon">💽</span>
+                    <strong>Local Disk (C:)</strong>
+                    <small>System Drive</small>
+                    <div class="drive-bar"><span style="width:65%"></span></div>
+                    <small>256 GB total · 90 GB free</small>
+                </button>
+
+                <button class="drive-card" data-drive="D:">
+                    <span class="drive-icon">💽</span>
+                    <strong>Local Disk (D:)</strong>
+                    <small>Data Drive</small>
+                    <div class="drive-bar"><span style="width:45%"></span></div>
+                    <small>500 GB total · 275 GB free</small>
+                </button>
+
+                <button class="drive-card" data-drive="E:">
+                    <span class="drive-icon">💽</span>
+                    <strong>Local Disk (E:)</strong>
+                    <small>Backup Drive</small>
+                    <div class="drive-bar"><span style="width:30%"></span></div>
+                    <small>1 TB total · 700 GB free</small>
+                </button>
+
+                <button class="drive-card" data-drive="USB">
+                    <span class="drive-icon">🔌</span>
+                    <strong>USB Drive</strong>
+                    <small>Removable Drive</small>
+                    <div class="drive-bar"><span style="width:75%"></span></div>
+                    <small>32 GB total · 8 GB free</small>
+                </button>
+            </div>
+
+            <p class="selected-drive-text">Selected drive: <strong id="selectedDrive">C:</strong></p>
+        </section>
+
+        <!-- Scanner -->
+        <section class="dashboard-section" id="scanner">
+            <div class="section-title">
+                <div>
+                    <h2>File Scanner</h2>
+                    <p>Choose a scan mode and time range.</p>
+                </div>
+            </div>
+
+            <div class="scanner-panel">
+                <div class="scan-options">
+                    <button class="scan-mode active" data-mode="quick">
+                        <span>⚡</span>
+                        <strong>Quick Scan</strong>
+                        <small>Fast demo scan</small>
+                    </button>
+
+                    <button class="scan-mode" data-mode="deep">
+                        <span>🔍</span>
+                        <strong>Deep Scan</strong>
+                        <small>Extended demo scan</small>
+                    </button>
+                </div>
+
+                <div class="filter-row">
+                    <label for="timeFilter">Deleted within</label>
+                    <select id="timeFilter">
+                        <option value="1">Last 1 hour</option>
+                        <option value="6">Last 6 hours</option>
+                        <option value="12">Last 12 hours</option>
+                        <option value="24" selected>Last 24 hours</option>
+                        <option value="all">All sample records</option>
+                    </select>
+                </div>
+
+                <button id="startScan" class="primary-btn scan-button">Start Scan →</button>
+
+                <div class="scan-progress-area" id="scanProgressArea">
+                    <div class="progress-info">
+                        <strong id="scanStatus">Preparing scan...</strong>
+                        <span id="scanPercent">0%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div id="scanProgressBar" class="progress-fill"></div>
+                    </div>
+                    <button id="cancelScan" class="cancel-btn">Cancel Scan</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="dashboard-section" id="files">
+            <div class="section-title">
+                <div>
+                    <h2>Scan Results</h2>
+                    <p id="resultsDescription">Start a demo scan to display sample files.</p>
+                </div>
+                <span class="result-count" id="resultCount">0 files</span>
+            </div>
+
+            <div class="results-toolbar">
+                <input type="search" id="searchFiles" placeholder="Search files...">
+
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="image">Images</option>
+                    <option value="video">Videos</option>
+                    <option value="document">Documents</option>
+                    <option value="audio">Audio</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="table-wrap">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAll"></th>
+                            <th>File Name</th>
+                            <th>Type</th>
+                            <th>Location</th>
+                            <th>Deleted</th>
+                            <th>Size</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody">
+                        <tr>
+                            <td colspan="8" class="empty-state">
+                                No scan results yet. Start a demo scan above.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="results-footer">
+                <span id="selectionInfo">0 files selected</span>
+                <button id="recoverButton" class="primary-btn" disabled>Recover Selected →</button>
+            </div>
+        </section>
+
+        <!-- Recovery History -->
+        <section class="dashboard-section" id="history">
+            <div class="section-title">
+                <div>
+                    <h2>Recovery History</h2>
+                    <p>Your current demo session activity.</p>
+                </div>
+            </div>
+
+            <div class="history-panel" id="historyList">
+                <p class="empty-state">No recovery activity yet.</p>
+            </div>
+        </section>
+
+        <!-- Settings -->
+        <section class="dashboard-section" id="settings">
+            <div class="section-title">
+                <div>
+                    <h2>Settings</h2>
+                    <p>Demo workspace information.</p>
+                </div>
+            </div>
+            <div class="settings-panel">
+                <p><strong>Application:</strong> RecuvaX Frontend Demo</p>
+                <p><strong>Mode:</strong> Browser-based simulation</p>
+                <p><strong>Data:</strong> Sample records only</p>
+                <p><strong>Recovery engine:</strong> Not connected</p>
+            </div>
+        </section>
+
+        <footer class="dashboard-footer">
+            RecuvaX © 2026 · Frontend Demo · No real files are recovered
+        </footer>
+    </main>
+</div>
+
+<!-- Preview Modal -->
+<div class="modal" id="previewModal">
+    <div class="modal-box">
+        <button class="modal-close" id="closePreview">×</button>
+        <div class="modal-icon" id="previewIcon">📄</div>
+        <h2 id="previewName">File Preview</h2>
+        <p id="previewDetails">Sample file information</p>
+        <div class="preview-notice">This is a simulated preview. No original file is opened.</div>
+    </div>
+</div>
+
+<!-- Recovery Modal -->
+<div class="modal" id="recoveryModal">
+    <div class="modal-box">
+        <button class="modal-close" id="closeRecovery">×</button>
+        <div class="modal-icon">♻️</div>
+        <h2>Recovery Destination</h2>
+        <p>Choose a destination for this simulated recovery.</p>
+
+        <label class="destination-label" for="destination">Save destination</label>
+        <select id="destination">
+            <option value="D:">Local Disk (D:)</option>
+            <option value="E:">Local Disk (E:)</option>
+            <option value="USB">USB Drive</option>
+            <option value="C:">Local Disk (C:)</option>
+        </select>
+
+        <p class="destination-tip">For real recovery, use a different physical drive where possible.</p>
+
+        <button id="confirmRecovery" class="primary-btn full-btn">Confirm Demo Recovery</button>
+
+        <div class="recovery-progress" id="recoveryProgress">
+            <div class="progress-track">
+                <div class="progress-fill" id="recoveryProgressBar"></div>
+            </div>
+            <p id="recoveryStatus">Preparing...</p>
+        </div>
+    </div>
+</div>
+
+<script src="./js/dashboard.js"></script>
+</body>
+</html>
