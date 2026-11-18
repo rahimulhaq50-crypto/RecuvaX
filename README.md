@@ -35,7 +35,7 @@ RecuvaX/
 
 ## 👨‍💻 Author
 
-**Rahimullah**
+**Rahimulhaq**
 
 ---
 
